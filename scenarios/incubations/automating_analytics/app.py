@@ -86,11 +86,14 @@ with st.sidebar:
 
         faq_dict = {  
             "ChatGPT": [  
-                "Show me revenue by product in ascending order",  
-                "Show me top 10 most expensive products",
-                "Show me net revenue by year. Revenue time is based on shipped date.",  
-                "For each category, get the list of products sold and the total sales amount",
-                "Find Quarterly Orders by Product. First column is Product Name, then year then four other columns, each for a quarter. The amount is order amount after discount", 
+                "total ACR opportunity by workload",  
+                "total ACR opportunity by expansion motion",
+                "total ACR opportunity for Western Europe area by expansion motion",  
+                "distinct customer list for App Service and Western Europe area",
+                "top 10 different customers by ACR opportunity for App Service and Western Europe area",
+                "total ACR opportunity for Banco Santander Chile" ,
+                "total instances for Banco Santander Chile",
+                "subscription and details for Banco Santander Chile and App Service"
             ],  
             "GPT-4": [  
                 "Pick top 20 customers generated most revenue in 2016 and for each customer show 3 products that they purchased most",  
@@ -175,24 +178,24 @@ with st.sidebar:
     # st.sidebar.title(options[index])
     # expandit=(st.session_state.apikey == '' or st.session_state.endpoint == '' or st.session_state.chatgpt == '')
 
-    st.button("Settings",on_click=toggleSettings)
-    if st.session_state['show_settings']:  
-        # with st.expander("Settings",expanded=expandit):
-        with st.form("AzureOpenAI"):
-            st.title("Azure OpenAI Settings")
-            st.text_input("ChatGPT deployment name:", value=st.session_state.chatgpt,key="txtChatGPT")  
-            st.text_input("GPT-4 deployment name (if not specified, default to ChatGPT's):", value=st.session_state.gpt4,key="txtGPT4") 
-            st.text_input("Azure OpenAI Endpoint:", value=st.session_state.endpoint,key="txtEndpoint")  
-            st.text_input("Azure OpenAI Key:", value=st.session_state.apikey, type="password",key="txtAPIKey")
+    #st.button("Settings",on_click=toggleSettings)
+    #if st.session_state['show_settings']:  
+       # # with st.expander("Settings",expanded=expandit):
+       # with st.form("AzureOpenAI"):
+        #    st.title("Azure OpenAI Settings")
+        #    st.text_input("ChatGPT deployment name:", value=st.session_state.chatgpt,key="txtChatGPT")  
+        #    st.text_input("GPT-4 deployment name (if not specified, default to ChatGPT's):", value=st.session_state.gpt4,key="txtGPT4") 
+        #    st.text_input("Azure OpenAI Endpoint:", value=st.session_state.endpoint,key="txtEndpoint")  
+        #    st.text_input("Azure OpenAI Key:", value=st.session_state.apikey, type="password",key="txtAPIKey")
 
-            st.radio("SQL Engine:",["sqlite","sqlserver"],index=0,key="txtSQLEngine")
-            st.write("SQL Server Settings (Optional)")
-            st.text_input("SQL Server:", value=st.session_state.sqlserver,key="txtSQLServer")  
-            st.text_input("Database:", value=st.session_state.sqldatabase,key="txtSQLDatabase")
-            st.text_input("User:", value=st.session_state.sqluser,key="txtSQLUser")  
-            st.text_input("Password:", type="password",value=st.session_state.sqlpassword,key="txtSQLPassword")
+        #    st.radio("SQL Engine:",["sqlite","sqlserver"],index=0,key="txtSQLEngine")
+        #    st.write("SQL Server Settings (Optional)")
+        #    st.text_input("SQL Server:", value=st.session_state.sqlserver,key="txtSQLServer")  
+        #    st.text_input("Database:", value=st.session_state.sqldatabase,key="txtSQLDatabase")
+        #    st.text_input("User:", value=st.session_state.sqluser,key="txtSQLUser")  
+        #    st.text_input("Password:", type="password",value=st.session_state.sqlpassword,key="txtSQLPassword")
 
-            st.form_submit_button("Submit",on_click=saveOpenAI)
+        #    st.form_submit_button("Submit",on_click=saveOpenAI)
 
     # sql_list=["sqlite"]
     # if not (st.session_state.sqlserver == '' or st.session_state.sqldatabase == '' or st.session_state.sqluser == '' or st.session_state.sqlpassword == ''):
