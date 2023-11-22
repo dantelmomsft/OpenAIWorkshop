@@ -68,7 +68,8 @@ col1, col2  = st.columns((3,1))
 
 with st.sidebar:  
     options = ("SQL Query Writing Assistant", "Data Analysis Assistant")
-    index = st.radio("Choose the app", range(len(options)), format_func=lambda x: options[x])
+    #index = st.radio("Choose the app", range(len(options)), format_func=lambda x: options[x])
+    index = 0
     if index == 0:
         system_message="""
         You are an agent designed to interact with a SQL database with schema detail in <<data_sources>>.
@@ -88,12 +89,12 @@ with st.sidebar:
             "ChatGPT": [  
                 "total ACR opportunity by workload",  
                 "total ACR opportunity by expansion motion",
-                "total ACR opportunity for Western Europe area by expansion motion",  
+                "total ACR opportunity for areas by expansion motion",  
                 "distinct customer list for App Service and Western Europe area",
-                "top 10 different customers by ACR opportunity for App Service and Western Europe area",
-                "total ACR opportunity for Banco Santander Chile" ,
-                "total instances for Banco Santander Chile",
-                "subscription and details for Banco Santander Chile and App Service"
+                "top 10 customers by total ACR opportunity for App Service and Western Europe area",
+                "total ACR opportunity for <full customer name>" ,
+                "total instances for <full customer name>",
+                "subscription and details for <full customer name> and App Service"
             ],  
             "GPT-4": [  
                 "Pick top 20 customers generated most revenue in 2016 and for each customer show 3 products that they purchased most",  
@@ -202,20 +203,24 @@ with st.sidebar:
     #     sql_list.append("sqlserver")
     # sql_engine = st.selectbox('SQL Engine',sql_list)  
 
-    chat_list=[]
-    if st.session_state.chatgpt != '':
-        chat_list.append("ChatGPT")
-    if st.session_state.gpt4 != '':
-        chat_list.append("GPT-4")
-    gpt_engine = st.selectbox('GPT Model', chat_list)  
-    if gpt_engine == "ChatGPT":  
-        gpt_engine = st.session_state.chatgpt  
-        faq = faq_dict["ChatGPT"]  
-    else:  
-        gpt_engine = st.session_state.gpt4
-        faq = faq_dict["GPT-4"]  
-    
-    option = st.selectbox('FAQs',faq)  
+    ### Disable GP4 selection start
+    #chat_list=[]
+    #if st.session_state.chatgpt != '':
+    #    chat_list.append("ChatGPT")
+    # if st.session_state.gpt4 != '':
+    #    chat_list.append("GPT-4")
+    # gpt_engine = st.selectbox('GPT Model', chat_list)  
+    # if gpt_engine == "ChatGPT":  
+    #    gpt_engine = st.session_state.chatgpt  
+    #    faq = faq_dict["ChatGPT"]  
+    # else:  
+    #    gpt_engine = st.session_state.gpt4
+    #    faq = faq_dict["GPT-4"]  
+    ### Disable GP4 selection end
+
+    gpt_engine = st.session_state.chatgpt 
+    faq = faq_dict["ChatGPT"]
+    option = st.selectbox('Get started with example queries',faq)  
 
     show_code = st.checkbox("Show code", value=False)  
     show_prompt = st.checkbox("Show prompt", value=False)
